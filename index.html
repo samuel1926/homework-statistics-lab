@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b16">
+  <meta name="description" content="Samuele Tortora · Student ID 2344522. An interactive portfolio of cryptography homework: elliptic curves, Ethereum wallets, hashing and statistical exploration.">
+  <title>Samuele Tortora · Cryptography Lab / Homework Collection</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#homeworks">Skip to assignments</a>
+  <div class="page">
+    <header class="header" id="top">
+      <a class="logo" href="./" aria-label="Cryptography Lab homepage"><span class="logo-emblem"><span>⌁</span></span><span class="logo-copy"><strong>CRYPTOGRAPHY<span class="logo-cyan">.</span>LAB</strong><small>THE HOMEWORK ARCHIVE</small></span></a>
+      <nav class="nav" aria-label="Main navigation"><a class="selected" href="#top">Overview</a><a href="#homeworks">Homework library</a><a href="#method">Methodology</a></nav>
+      <a class="nav-id" href="#author"><span class="status-pulse"></span>SAMUELE TORTORA <span class="muted-id">/ 2344522</span></a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-grain" aria-hidden="true"></div>
+        <div class="hero-left">
+          <span class="eyebrow"><span class="mini-cube">✳</span> APPLIED CRYPTOGRAPHY <span class="eyebrow-split">/</span> AN OPEN LEARNING LAB</span>
+          <h1 id="hero-heading">Cryptography,<br><span class="gradient-type">made tangible.</span></h1>
+          <p class="hero-intro">Mathematics you can interact with. A growing collection of homework experiments exploring elliptic curves, Ethereum wallets and the statistical properties behind modern cryptography.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#homeworks">Explore the homework <span>↗</span></a><a class="btn btn-ghost" href="#live-demo">Try the live experiment <span>↓</span></a></div>
+          <div class="hero-info"><span class="user-dot">ST</span><span><b>Samuele Tortora</b><small>Student ID 2344522 · Coursework / 2026</small></span><span class="hero-divider"></span><span class="hero-course">INTERACTIVE<br><strong>BY DESIGN</strong></span></div>
+        </div>
+        <div class="hero-right" id="live-demo" aria-labelledby="demo-title">
+          <div class="window-head"><div class="window-lights" aria-hidden="true"><i></i><i></i><i></i></div><span>EXPERIMENT_01 / ECC PREVIEW</span><span class="system-live">● LIVE</span></div>
+          <div class="terminal-main">
+            <div class="terminal-title"><div><span>INTERACTIVE TOY CURVE</span><h2 id="demo-title">From secret to public.</h2></div><span class="terminal-chip">𝔽₁₇</span></div>
+            <div class="mini-equation">y² ≡ x³ + 7 (mod 17) <span>· G = (1, 5)</span></div>
+            <svg id="mini-curve" class="mini-curve" viewBox="0 0 530 292" role="img" aria-label="Plot of toy elliptic curve points, highlighting the public point"></svg>
+            <div class="live-slider"><label for="demo-k"><span>PRIVATE SCALAR</span><strong id="demo-k-text">k = 6</strong></label><input id="demo-k" type="range" min="1" max="17" value="6" step="1"><div class="range-endpoints"><span>01</span><span>DRAG TO EXPLORE</span><span>17</span></div></div>
+            <div class="live-result"><div><small>PRIVATE KEY</small><strong id="mini-private">06</strong></div><span class="compute-arrow">→ <small>k × G</small> →</span><div><small>TOY PUBLIC KEY</small><strong id="mini-public">(5, 8)</strong></div></div>
+            <div class="terminal-foot"><span id="mini-note">6G = (5, 8) · valid on E(𝔽₁₇)</span><a href="homeworks/hmwk-01/">OPEN FULL LAB ↗</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="overview-bar" aria-label="Coursework overview"><div><span class="metric-icon">◈</span><strong id="published-count">02</strong><small>INTERACTIVE HOMEWORKS</small></div><div><span class="metric-icon">⌘</span><strong>100%</strong><small>CLIENT-SIDE JAVASCRIPT</small></div><div><span class="metric-icon">◎</span><strong>Open</strong><small>REPRODUCIBLE EXPERIMENTS</small></div><div><span class="metric-icon">↗</span><strong>GitHub Pages</strong><small>ONE SHAREABLE WEBSITE</small></div></section>
+
+      <section class="library" id="homeworks">
+        <div class="section-head"><div><p class="overline">01 <span>/</span> EXPERIMENT COLLECTION</p><h2>Choose your <em>experiment.</em></h2><p>Each assignment is a complete interactive lab, with mathematical reasoning, reproducible results and implementation you can inspect.</p></div><span class="project-index">[ <span id="index-count">02</span> PUBLISHED / MORE TO COME ]</span></div>
+        <div class="library-toolbar"><div class="search-wrap"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><label for="homework-search" class="sr-only">Search homeworks</label><input id="homework-search" type="search" placeholder="Search by topic, technique or number…" autocomplete="off"><span class="keycap">/</span></div><div class="filter-tabs" role="group" aria-label="Filter assignments"><button class="active" data-filter="all" aria-pressed="true">All <span id="filter-count">02</span></button><button data-filter="elliptic" aria-pressed="false">Elliptic curves</button><button data-filter="wallet" aria-pressed="false">Wallets & hashing</button></div></div>
+        <div id="homework-grid" class="homework-grid" aria-live="polite"></div>
+        <div id="no-results" class="no-results" hidden>No homework matches this search. Try a different keyword.</div>
+        <div class="future"><div class="future-icon">+</div><div><strong>Built to grow with every assignment.</strong><span>HMWK 03, 04, 05… will join this collection, always at the same address.</span></div><span class="future-code">NEXT / TBA</span></div>
+      </section>
+
+      <section class="method" id="method"><div class="method-heading"><p class="overline">02 <span>/</span> HOW THESE LABS WORK</p><h2>Not just results.<br><em>Reasoning you can see.</em></h2><p>Every page is designed as a hands-on companion to the course: experiment first, understand the algebra, then critically interpret the statistics.</p></div><div class="method-grid"><article><span class="method-number">01</span><span class="method-icon">⌁</span><h3>Experiment</h3><p>Adjust inputs, manipulate mathematical objects and see the result update instantly.</p></article><article><span class="method-number">02</span><span class="method-icon">⌘</span><h3>Inspect</h3><p>Trace algorithms one step at a time, with clear formulas and verifiable reference vectors.</p></article><article><span class="method-number">03</span><span class="method-icon">▥</span><h3>Analyze</h3><p>Study distributions and bit patterns without confusing empirical observations with security proofs.</p></article></div></section>
+      <section class="author" id="author"><div><span class="overline">PROJECT OWNER / UNIVERSITY COURSEWORK</span><h2>Samuele Tortora<span>.</span></h2><p>Student ID <strong>2344522</strong> · Cryptography homework collection</p></div><a href="#homeworks" class="btn btn-primary">Back to the labs ↗</a></section>
+    </main>
+    <footer class="footer"><div><span class="footer-mark">⌁</span><span>CRYPTOGRAPHY.LAB <small>© 2026 · Samuele Tortora / 2344522</small></span></div><p>Educational experiments. Never use toy cryptography for real keys.</p><a href="#top">BACK TO TOP ↑</a></footer>
+  </div>
+</body>
+</html>
