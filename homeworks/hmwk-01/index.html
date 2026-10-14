@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090e1b">
+  <meta name="description" content="An interactive educational laboratory for elliptic-curve scalar multiplication and statistical exploration over the toy curve y² = x³ + 7 (mod 17).">
+  <title>HMWK 01 — Elliptic-Curve Cryptography Lab</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+  <script src="advanced.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="../../index.html" aria-label="Back to Samuele Tortora homework collection">
+        <span class="brand-mark" aria-hidden="true">E<span>·</span>C</span>
+        <span class="brand-label"><strong>CRYPTOGRAPHY LAB</strong><small>HOMEWORK / 01</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="../../index.html">← All homeworks</a>
+        <a href="#playground">Playground</a>
+        <a href="#algorithm">Point addition</a>
+        <a href="#binary-lab">Double-and-add</a>
+        <a href="#statistics">Statistics</a>
+        <a href="#discussion">Conclusions</a>
+      </nav>
+      <a href="script.js" class="source-link" download><span class="source-brackets" aria-hidden="true">&lt;/&gt;</span> View JS</a>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-glow glow-one" aria-hidden="true"></div>
+        <div class="hero-glow glow-two" aria-hidden="true"></div>
+        <div class="hero-content">
+          <div class="eyebrow"><span class="eyebrow-line"></span> APPLIED CRYPTOGRAPHY <span class="eyebrow-dot">·</span> INTERACTIVE EXPERIMENT</div>
+          <h1 id="hero-title">One secret number.<br><span>One public point.</span></h1>
+          <p class="hero-description">Explore how elliptic-curve scalar multiplication transforms a private scalar <em>k</em> into a public point <em>Q = kG</em>. Follow every addition, inspect the finite-field geometry, and investigate the output statistics.</p>
+          <div class="hero-actions">
+            <a href="#playground" class="button button-primary">Launch interactive lab <span aria-hidden="true">↗</span></a>
+            <a href="#how-it-works" class="button button-text">Read the mathematics <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="hero-footnote"><span class="small-dot"></span> Samuele Tortora · Student ID 2344522 · Educational toy curve, not a secure key generator</div>
+        </div>
+        <div class="hero-visual" aria-label="Example scalar multiplication from private key 6 to public point (5, 8)">
+          <div class="hero-card-head"><span class="window-dots"><i></i><i></i><i></i></span><span>KEY DERIVATION / TOY MODEL</span><span class="live-indicator">● VERIFIED</span></div>
+          <div class="hero-transform">
+            <div class="transform-node"><span class="tiny-label">PRIVATE SCALAR</span><strong id="hero-key">k = 6</strong><span class="node-sub">keep secret</span></div>
+            <div class="transform-center" aria-hidden="true"><span class="operator-times">×</span><span class="operator-line"></span><span class="operator-base">G</span></div>
+            <div class="transform-node public-node"><span class="tiny-label">PUBLIC POINT</span><strong id="hero-public">(5, 8)</strong><span class="node-sub">may be shared</span></div>
+          </div>
+          <div class="hero-code"><span><b class="code-muted">const</b> publicKey = <b class="code-accent">multiply</b>(G, k);</span><span class="code-comment" id="hero-check">// (5, 8) ✓ on curve</span></div>
+          <div class="hero-card-bottom"><span>CURVE <strong>y² = x³ + 7 (mod 17)</strong></span><span class="hero-card-chip">F<sub>17</sub></span></div>
+        </div>
+      </section>
+
+      <section class="overview" aria-label="Experiment parameters">
+        <div class="overview-item"><span class="overview-icon">01</span><div><span>Finite field</span><strong>𝔽<sub>17</sub></strong></div></div>
+        <div class="overview-item"><span class="overview-icon">02</span><div><span>Elliptic curve</span><strong>y² = x³ + 7</strong></div></div>
+        <div class="overview-item"><span class="overview-icon">03</span><div><span>Total group size</span><strong>18 points <small>(incl. 𝒪)</small></strong></div></div>
+        <div class="overview-item"><span class="overview-icon">04</span><div><span>Real Ethereum curve</span><strong>secp256k1 <small>≠ toy curve</small></strong></div></div>
+      </section>
+
+      <section id="playground" class="content-section lab-section" aria-labelledby="lab-title">
+        <div class="section-heading"><div><div class="section-eyebrow"><span>01</span> / EXPERIMENT</div><h2 id="lab-title">The scalar multiplication playground<span class="heading-period">.</span></h2><p>Choose a valid base point and private scalar, then watch the group operation unfold.</p></div><span class="section-counter">INTERACTIVE MODULE / 01</span></div>
+        <div class="lab-grid">
+          <div class="panel control-panel">
+            <div class="panel-top"><h3>Experiment setup</h3><span class="panel-tag">LIVE PARAMETERS</span></div>
+            <div class="field-group"><label for="base-select">Base point <span>G</span></label><select id="base-select" aria-describedby="base-help"></select><p class="field-help" id="base-help">Select any of the 17 finite points on the curve.</p></div>
+            <div class="field-group"><label for="scalar-input">Private scalar <span>k</span></label><div class="scalar-input-row"><input id="scalar-input" type="number" min="1" max="256" step="1" value="6" inputmode="numeric"><span class="input-suffix">integer · 1–256</span></div><p id="scalar-error" class="field-error" role="alert" hidden>Enter a whole number from 1 to 256.</p></div>
+            <div class="field-group"><span class="field-label">Multiplication method</span><div class="method-switch" role="group" aria-label="Multiplication method"><button class="method-button is-active" type="button" data-method="repeated" aria-pressed="true">Repeated addition</button><button class="method-button" type="button" data-method="double-add" aria-pressed="false">Double-and-add</button></div></div>
+            <div class="control-divider"></div>
+            <div class="selected-result"><span class="overline">COMPUTED PUBLIC KEY / Q = kG</span><div id="public-key" class="public-value" aria-live="polite">(5, 8)</div><div class="verification"><span class="check-circle">✓</span><span id="curve-verification">Valid point on E(𝔽₁₇)</span></div></div>
+            <div class="control-stats"><div><span>Base-point order</span><strong id="point-order">9</strong></div><div><span>Full steps</span><strong id="total-steps">6</strong></div></div>
+            <div class="control-actions"><button class="button button-primary button-wide" id="play-button" type="button"><span id="play-symbol">▶</span> <span id="play-label">Play animation</span></button><div class="secondary-actions"><button class="button button-secondary" id="step-button" type="button">Next step <span aria-hidden="true">→</span></button><button class="button button-secondary" id="reset-button" type="button">↺ Reset</button></div></div>
+            <div class="speed-row"><label for="speed-select">Animation speed</label><select id="speed-select"><option value="1500">Slow · 0.5×</option><option value="880" selected>Normal · 1×</option><option value="380">Fast · 2×</option><option value="120">Very fast · 4×</option></select></div>
+          </div>
+          <div class="panel chart-panel">
+            <div class="panel-top chart-top"><div><h3>Finite-field point map</h3><p>All valid (x, y) satisfying the curve equation, modulo 17</p></div><span class="panel-tag point-count">17 FINITE POINTS</span></div>
+            <div class="plot-mode-controls" role="group" aria-label="Graph visualization mode"><button type="button" class="is-selected" aria-pressed="true" data-plot-mode="finite">◈ Finite field 𝔽₁₇</button><button type="button" aria-pressed="false" data-plot-mode="real">∿ Real-number geometry</button></div><div class="plot-wrap" id="finite-plot-wrap"><svg id="curve-plot" viewBox="0 0 620 505" role="img" aria-label="Cartesian grid of the 17 finite points of the toy elliptic curve" preserveAspectRatio="xMidYMid meet"></svg></div><div class="plot-wrap" id="real-plot-wrap" hidden><svg id="real-curve-plot" viewBox="0 0 700 535" role="img" aria-label="Continuous real valued curve y squared equals x cubed plus seven"></svg></div><p class="plot-mode-description" id="plot-mode-note">Finite field: only discrete points satisfying y² ≡ x³ + 7 (mod 17) exist.</p>
+            <div class="chart-bottom"><div class="chart-legend"><span><i class="legend-dot legend-faint"></i> Valid point</span><span><i class="legend-dot legend-base"></i> Base point G</span><span><i class="legend-dot legend-visited"></i> Visited</span><span><i class="legend-dot legend-active"></i> Current operation</span></div><span class="chart-notice">Discrete points, not a continuous curve</span></div>
+          </div>
+        </div>
+        <div class="live-strip"><div><span class="live-strip-label">CURRENT ACCUMULATOR</span><strong id="accumulator-value">𝒪</strong></div><span class="live-strip-arrow" aria-hidden="true">→</span><div><span class="live-strip-label">ANIMATION PROGRESS</span><strong id="progress-label">0 / 6 operations</strong></div><div class="progress-track" aria-hidden="true"><div id="progress-fill"></div></div><div class="live-strip-state" id="animation-state">READY</div></div>
+      </section>
+
+      <section id="algorithm" class="content-section algorithm-section" aria-labelledby="algorithm-title">
+        <div class="section-heading"><div><div class="section-eyebrow"><span>02</span> / UNDER THE HOOD</div><h2 id="algorithm-title">Every operation, explained<span class="heading-period">.</span></h2><p>Select a step in the trace to inspect the modular arithmetic used to compute that point.</p></div><span class="section-counter">AUDITABLE COMPUTATION</span></div>
+        <div class="algorithm-grid">
+          <div class="panel steps-panel"><div class="panel-top"><h3>Operation trace</h3><span class="panel-tag" id="trace-mode">REPEATED ADDITION</span></div><div class="step-table-wrap"><table class="steps-table"><thead><tr><th>STEP</th><th>OPERATION</th><th>RESULT</th></tr></thead><tbody id="steps-body"></tbody></table></div><div class="table-footer">Click any row to jump to that step <span id="trace-count">6 operations</span></div></div>
+          <div class="panel math-panel"><div class="panel-top"><h3>Inside the arithmetic</h3><span class="panel-tag">MOD 17</span></div><div class="formula-header"><span class="formula-icon">ƒ</span><div><span class="overline">SELECTED OPERATION</span><strong id="formula-operation">Ready to compute</strong></div></div><p class="formula-explanation" id="formula-description">Select an operation or click Play to inspect the corresponding point addition.</p><div class="formula-lines" id="formula-lines"><div><span>Rule</span><code>P + 𝒪 = P</code></div><div><span>Field</span><code>All arithmetic is modulo 17.</code></div></div><div class="math-tip"><span class="tip-icon">i</span><p><strong>Remember:</strong> Division in a finite field means multiplication by the modular inverse, not ordinary division.</p></div></div>
+        </div>
+        <div class="explanation-grid" id="how-it-works"><article class="explain-card"><div class="explain-number">01 / THE CURVE</div><h3>A finite set of points</h3><p>We work with <strong>y² ≡ x³ + 7 (mod 17)</strong>. There are 17 finite solutions and one identity point 𝒪. Unlike a continuous elliptic-curve drawing, the plot contains only integer-coordinate solutions in 𝔽₁₇.</p></article><article class="explain-card"><div class="explain-number">02 / THE GROUP LAW</div><h3>Addition is algebraic</h3><p>For P ≠ Q, use λ = (y₂ − y₁)(x₂ − x₁)⁻¹. For P = Q, use λ = 3x₁²(2y₁)⁻¹. Then x₃ = λ² − x₁ − x₂ and y₃ = λ(x₁ − x₃) − y₁, all modulo 17.</p></article><article class="explain-card"><div class="explain-number">03 / SCALAR MULTIPLICATION</div><h3>From k to Q = kG</h3><p>Repeated addition computes G + ··· + G (k times). Double-and-add evaluates the same result using the binary representation of k, reducing the number of operations as k grows.</p></article></div>
+      </section>
+
+      <section id="binary-lab" class="content-section binary-lab" aria-labelledby="binary-title">
+        <div class="section-heading"><div><div class="section-eyebrow"><span>03</span> / FAST SCALAR MULTIPLICATION</div><h2 id="binary-title">Binary speed. <span class="heading-period">Same public key.</span></h2><p>Process the scalar from its most significant bit. Every bit doubles the accumulator; each 1-bit adds G. Watch the cost drop from O(k) to O(log₂ k).</p></div><span class="section-counter">STEP-BY-STEP PERFORMANCE LAB</span></div>
+        <div class="panel binary-controls"><div><label for="binary-key">CHOOSE A PRIVATE SCALAR</label><select id="binary-key"><option value="6">k = 6 · homework example</option><option value="42" selected>k = 42 · binary 101010</option><option value="127">k = 127 · seven 1-bits</option><option value="255">k = 255 · eight 1-bits</option><option value="1024">k = 1024 · power of two</option></select></div><div><span class="binary-label">FIXED TOY BASE POINT</span><strong>G = (1, 5) <small>· order 9</small></strong></div><div class="binary-action-row"><button id="binary-reset" type="button" class="button button-secondary">↺ Reset</button><button id="binary-next" type="button" class="button button-primary">Step forward →</button><button id="binary-run" type="button" class="button button-primary">▶ Run animation</button></div></div>
+        <div class="binary-bits panel"><div class="binary-bits-top"><span>BINARY EXPANSION OF k</span><span id="binary-length">6 bits · 3 ones</span></div><div id="binary-bitstrip" class="binary-bitstrip"></div><div class="binary-progress-track"><div id="binary-progress"></div></div></div>
+        <div class="binary-metrics"><div class="binary-metric naive"><span>REPEATED ADDITION</span><strong id="binary-naive">41</strong><small>point additions · O(k)</small></div><div class="binary-metric faster"><span>DOUBLE-AND-ADD</span><strong id="binary-fast">7</strong><small>group operations · O(log₂ k)</small></div><div class="binary-metric efficient"><span>RELATIVE SAVINGS</span><strong id="binary-savings">82.9%</strong><small>when excluding the initial identity assignment</small></div></div>
+        <div class="binary-trace-grid"><div class="panel binary-trace-panel"><div class="panel-top"><h3>Algorithm trace</h3><span class="panel-tag">MSB → LSB</span></div><div class="binary-table-wrap"><table id="binary-trace"><thead><tr><th>STEP</th><th>INPUT BIT</th><th>OPERATION</th><th>ACCUMULATOR R</th></tr></thead><tbody></tbody></table></div></div><div class="panel binary-inspector"><span class="binary-label">CURRENT ALGORITHM STATE</span><div id="binary-step" class="binary-inspector-step">Step 0 / 6</div><div id="binary-result" class="binary-inspector-point">𝒪</div><p id="binary-explanation">Press Step Forward to begin.</p><div class="binary-state-grid"><div>GROUP OPS<strong id="binary-ops">0</strong></div><div>DOUBLINGS<strong id="binary-doubles">0</strong></div><div>ADDITIONS<strong id="binary-adds">0</strong></div></div><div class="binary-target">EXPECTED RESULT <strong id="binary-final">42G = (5, 8)</strong></div><p class="binary-warning">For the educational toy curve, values repeat every 9 scalars. The speed comparison concerns the algorithm, not security.</p></div></div>
+      </section>
+
+      <section id="statistics" class="content-section stats-section" aria-labelledby="stats-title">
+        <div class="section-heading"><div><div class="section-eyebrow"><span>04</span> / STATISTICAL EXPLORATION</div><h2 id="stats-title">What do the output points reveal<span class="heading-period">?</span></h2><p>Sample k = 1, …, N with the selected base point G. Compare coordinate frequencies, bits, correlations, and cyclic behavior.</p></div><span class="section-counter">DESCRIPTIVE ANALYSIS</span></div>
+        <div class="panel stats-toolbar"><div class="sample-control"><div><label for="sample-count">Number of private scalars</label><p>Consecutive keys k = 1, 2, …, N</p></div><div class="sample-range"><input id="sample-count" type="range" min="2" max="72" value="8" step="1"><output for="sample-count" id="sample-output">8</output></div></div><div class="stats-sample-note" id="sample-note">8 finite outputs · 0 infinity values</div></div>
+        <div class="stats-metrics"><div class="stat-card"><span>FINITE OUTPUTS</span><strong id="metric-finite">8 <small>/ 8</small></strong><p>Coordinates included in the analysis</p></div><div class="stat-card"><span>DISTINCT FINITE POINTS</span><strong id="metric-distinct">8</strong><p>Repeated keys can repeat points</p></div><div class="stat-card"><span>AVERAGE BITS CHANGED</span><strong id="metric-hamming">— <small>/ 10</small></strong><p>Adjacent, finite output encodings</p></div><div class="stat-card"><span>GROUP PERIOD</span><strong id="metric-period">9</strong><p>kG repeats every 9 scalars</p></div></div>
+        <div class="hist-grid"><div class="panel histogram-panel"><div class="panel-top"><h3>x-coordinate frequency</h3><span class="histogram-label">0 — 16</span></div><div class="histogram-container" id="hist-x" role="img" aria-label="Histogram of observed x coordinates"></div><div class="axis-caption">COORDINATE VALUE x</div></div><div class="panel histogram-panel"><div class="panel-top"><h3>y-coordinate frequency</h3><span class="histogram-label">0 — 16</span></div><div class="histogram-container hist-y" id="hist-y" role="img" aria-label="Histogram of observed y coordinates"></div><div class="axis-caption">COORDINATE VALUE y</div></div></div>
+        <div class="advanced-stat-grid"><article class="panel advanced-scatter"><div class="panel-top"><h3>2D point dispersion (x, y)</h3><span class="panel-tag">SPATIAL VIEW</span></div><svg id="sample-scatter" viewBox="0 0 610 295" role="img" aria-label="Scatter plot of elliptic curve coordinates"></svg><p id="scatter-caption">Finite outputs on the selected toy curve.</p></article><article class="panel advanced-scatter"><div class="panel-top"><h3>Input scalar k → x coordinate</h3><span class="panel-tag">CORRELATION VIEW</span></div><svg id="key-vs-x" viewBox="0 0 610 295" role="img" aria-label="Scatter plot relating private key k to output x coordinate"></svg><p>Structural, periodic and deterministic: this plot does not measure discrete-logarithm hardness.</p></article></div>
+        <div class="stats-deep-grid"><div class="panel bit-panel"><div class="panel-top"><h3>Coordinate bit frequencies</h3><span class="panel-tag">5 BITS PER COORDINATE</span></div><p class="panel-intro">Fraction of finite outputs with each bit equal to 1 (bit 0 is the least significant).</p><div class="bit-column-labels"><span>BIT POSITION</span><span>FRACTION OF ONES</span></div><div id="bit-bars"></div><div class="bit-footnote">The bars describe a chosen encoding; they are <strong>not</strong> a security test.</div></div><div class="panel inference-panel"><div class="panel-top"><h3>Correlation & bit flips</h3><span class="panel-tag">EXPLORATORY</span></div><p class="panel-intro">Pearson correlation between k and the numeric coordinates, computed only for finite outputs.</p><div class="correlation-row"><span>corr(k, x)</span><strong id="correlation-x">—</strong></div><div class="correlation-row"><span>corr(k, y)</span><strong id="correlation-y">—</strong></div><div class="bit-flip-card"><div class="flip-title"><span>FLIP ONE INPUT BIT</span><span class="flip-symbol">XOR 1</span></div><div class="flip-values"><span id="flip-before">k = 6</span><span aria-hidden="true">→</span><span id="flip-after">k′ = 7</span></div><p id="flip-outputs">Q = (5, 8) → Q′ = (2, 7)</p><strong id="flip-distance">7 / 10 output bits changed</strong><small>Five bits for x plus five bits for y; undefined if either point is 𝒪.</small></div></div></div>
+        <div class="stats-insight"><div class="insight-icon">!</div><div><strong id="stats-insight-title">A finite cycle, not randomness</strong><p id="stats-insight-text">The outputs are deterministic. When k spans an entire subgroup once, each subgroup point appears once; beyond its order, the sequence repeats.</p></div></div>
+      </section>
+
+      <section id="discussion" class="content-section discussion-section" aria-labelledby="discussion-title"><div class="section-heading"><div><div class="section-eyebrow"><span>05</span> / DISCUSSION & CONCLUSIONS</div><h2 id="discussion-title">One-way does not mean hash<span class="heading-period">.</span></h2><p>Which observations matter for public-key cryptography, and which belong to the theory of hash functions?</p></div></div>
+        <div class="discussion-grid"><article class="discussion-card"><span class="discussion-index">01 / CORE INSIGHT</span><h3>Efficient forward map, hard inverse</h3><p>Scalar multiplication Q = kG is deterministic and efficient. In real secp256k1, retrieving k from Q is believed computationally infeasible (the elliptic-curve discrete logarithm problem). Our 18-element toy group is trivially searchable, so it provides <em>no security</em>.</p><span class="conclusion-tag tag-yes">RELEVANT TO ECC</span></article><article class="discussion-card"><span class="discussion-index">02 / GROUP STRUCTURE</span><h3>Outputs are not independent draws</h3><p>The sequence G, 2G, 3G, … follows a mathematical subgroup. If G has order n, then (k+n)G = kG. Over all k = 1, …, n, each subgroup element occurs exactly once, including 𝒪. x coordinates may repeat for P and −P.</p><span class="conclusion-tag tag-yes">RELEVANT TO ECC</span></article><article class="discussion-card"><span class="discussion-index">03 / UNIFORMITY</span><h3>Uniform scalars ≠ uniform coordinates</h3><p>A uniformly chosen scalar modulo the order of G yields a uniform group element, but it does <em>not</em> make x and y independently uniform over 0, …, 16. Histograms depend on the subgroup and the chosen sample range.</p><span class="conclusion-tag tag-caution">INTERPRET CAREFULLY</span></article><article class="discussion-card"><span class="discussion-index">04 / HASH COMPARISON</span><h3>Avalanche is not an ECC requirement</h3><p>Cryptographic hashes are normally evaluated for diffusion and avalanche-like behavior of their encoded output bits. A simple Hamming-distance test on point coordinates depends on the encoding and does not establish ECDLP hardness or hash-like security.</p><span class="conclusion-tag tag-alt">MORE NATURAL FOR HASHES</span></article></div>
+        <div class="worked-example"><div><span class="worked-eyebrow">REFERENCE RUN / G = (1, 5), k = 6</span><h3>The verified answer</h3><p>Starting from 𝒪 and adding G repeatedly gives the following exact points:</p></div><div class="worked-sequence"><span>G = (1, 5)</span><b>→</b><span>2G = (2, 10)</span><b>→</b><span>3G = (5, 9)</span><b>→</b><span>4G = (12, 1)</span><b>→</b><span>5G = (12, 16)</span><b>→</b><span class="worked-final">6G = (5, 8) ✓</span></div><div class="worked-bottom"><span>Example double: 2G uses λ = (3 · 1²) · (10⁻¹) ≡ 3 · 12 ≡ 2 (mod 17).</span><strong>TOY PUBLIC KEY = (5, 8)</strong></div></div>
+        <div class="source-block"><div><strong>References & technical scope</strong><p>The page implements an educational prime-field elliptic curve only. Ethereum actually uses secp256k1; an Ethereum address is derived from the real public key through a further hashing process, which is not implemented here.</p></div><div class="reference-links"><a href="https://github.com/ethereumbook/ethereumbook/blob/develop/04keys-addresses.asciidoc" target="_blank" rel="noopener noreferrer">Mastering Ethereum ↗</a><a href="https://cryptohack.org/courses/elliptic/ecc1/" target="_blank" rel="noopener noreferrer">CryptoHack: Point Addition ↗</a></div></div>
+      </section>
+    </main>
+    <footer class="site-footer"><div class="footer-brand"><span class="brand-mark small">E<span>·</span>C</span><div><strong>ELLIPTIC CURVE / HOMEWORK 01</strong><small>Interactive JavaScript · Pure HTML + CSS + SVG</small></div></div><span>Samuele Tortora · Student ID 2344522 · Educational demonstration</span><a href="../../index.html">← All homeworks</a></footer>
+  </div>
+</body>
+</html>
