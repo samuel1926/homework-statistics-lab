@@ -1,142 +1,57 @@
-# Applied Cryptography — Interactive Homework Portfolio
+# Statistics.Lab — Interactive Cryptography Lessons
 
-**Student:** Samuele Tortora  
-**Student ID:** 2344522  
-**Delivery:** static website on GitHub Pages  
-**Built with:** HTML5, CSS3, JavaScript, SVG, browser Web Crypto (where supported)
+**Samuele Tortora · Student ID 2344522 · Coursework 2026**
 
-## Website
+A unified, fully static GitHub Pages site for two teaching lessons. The site retains the complete interactive experiments and theoretical material from all three original exercise submissions.
 
-The repository is a portfolio, **not a single homework**. The root `index.html` is an overview with links to every published experiment. New assignments go into new folders and get added to the central registry in `assets/site.js`.
+## Navigate
 
-### Published assignments
+- **Homepage**: `/index.html` — two cards, search, lesson filters and an ECC live preview.
+- **Lesson 01**: `/homeworks/lesson-01/` — one continuous page with **Part 01: Elliptic-Curve Scalar Multiplication** and **Part 02: Ethereum Wallet Derivation**. Both original experiments run inside automatically sized, same-origin embedded modules; each module retains its own JavaScript, charts, mathematical explanations, statistics and demonstrations. The parent supplies a single navigation/header. This isolation avoids conflicts between the distinct crypto engines without visually dividing the coursework into separate websites.
+- **Lesson 02**: `/homeworks/lesson-02/` — Caesar cipher, secp256k1 toy encryption, distribution matching, chi-square and n-gram attacks, Monte Carlo studies, ECC private-key recovery, mathematical proofs and final conclusions, with the shared Statistics.Lab look.
 
-| Homework | Topic | Page |
-| --- | --- | --- |
-| 01 | Elliptic-curve scalar multiplication on E(F17); point map, repeated addition, double-and-add, statistical exploration | `homeworks/hmwk-01/index.html` |
-| 02 | Ethereum mnemonic → HD private key → public key → address → EIP-55; history, hashing comparison, 160-bit address statistics | `homeworks/hmwk-02/index.html` |
+### Backward compatible routes
 
-## Directory layout
+`/homeworks/hmwk-01/` and `/homeworks/hmwk-02/` still work as standalone experiments (and serve embedded modes with `?embed=1`). `/homeworks/HMWK3/` redirects to `/homeworks/lesson-02/` so old shared URLs still work.
+
+## Project structure
 
 ```
 index.html
-README.md
 assets/
-  site.css
-  site.js                  # edit HOMEWORKS to add an assignment
+  site.css                original homepage visual system
+  site.js                 centralized two-lesson registry and ECC preview
+  unified.css             homepage adjustments
+  lesson.css              shared lesson-one shell design
+  lesson.js               same-origin iframe resizing and anchor navigation
+  embed-lab.css           embedded presentation for original exercise modules
+  embed-lab.js            iframe resizing and in-page anchor messages
+  cryptanalysis-theme.css unified Lesson 02 visual treatment
 homeworks/
-  hmwk-01/
-    index.html
-    styles.css
-    script.js              # toy curve math + visual interactive laboratory
-  hmwk-02/
-    index.html
-    styles.css
-    crypto.js              # native JS BIP-39 / BIP-32 / ECC / Keccak / EIP-55
-    script.js              # interactions, charts, stats
- tests/
-  test_ecc.js
-  test_wallet.js
+  lesson-01/index.html    one page with two interactive parts
+  lesson-02/              complete statistical cryptanalysis lab
+  hmwk-01/                original ECC exercise (embedded in Part 01)
+  hmwk-02/                original Ethereum wallet exercise (embedded in Part 02)
+  HMWK3/index.html        backward-compatible redirect
 ```
 
 ## Publish to GitHub Pages
 
-1. **Extract** the ZIP. Open the folder `Samuele-Tortora-Cryptography-Homeworks`.
-2. Upload **the contents of that folder** to the root of your existing GitHub repository (not the folder itself). The main `index.html` must be in the repository root, at the same level as `assets` and `homeworks`.
-3. Go to **Settings → Pages → Build and deployment**; select **Deploy from a branch**, branch **main**, folder **/(root)**, and **Save**.
-4. Your homepage will be available at `https://USERNAME.github.io/REPOSITORY/` when GitHub Pages finishes deploying. Clicking each card opens the corresponding homework.
+1. Create a backup copy of the existing repository or download its current ZIP.
+2. Extract the delivered project ZIP. Copy **the contents of its project folder**, not its outer wrapper folder, into the root of your GitHub repository, preserving folders and relative paths. All new `assets` files and the two `homeworks/lesson-*` folders are required.
+3. Replace updated existing files (`index.html`, `README.md`, `assets/site.js`, the two original `homeworks/hmwk-*/index.html`) and upload the new files. Remove outdated standalone `HMWK3` files if you want the clean redirect (GitHub's web UI does not automatically delete old files on upload).
+4. In **Settings → Pages**, set **Deploy from a branch → main → /(root)**. Wait for the deployment workflow to complete; then hard-refresh the website.
+5. Confirm both lesson cards, the two Part sections in Lesson 01, and the Caesar/ECC demos, Monte Carlo charts and proofs in Lesson 02.
 
-**Existing repository with an old `index.html`:** replace it with the new root `index.html`. Old root-level `script.js` and `style.css` from a previous draft can be deleted if they are no longer used. This version keeps every homework's own code inside its own folder.
+### Safer way to replace the whole repository without manual file merging
 
-GitHub Pages runs a static site. Nothing needs to be installed by your professor. For Homework 02, modern browsers and a secure origin (HTTPS/localhost) are required for the native Web Crypto API; GitHub Pages provides HTTPS.
+If you use Git or GitHub Desktop, clone your repository, replace the working tree contents with the new project contents, then commit/push. This also deletes any obsolete files cleanly while preserving Git history. Avoid deleting the `.git` folder from your local clone.
 
-## Add a new homework
+## Cryptographic scope
 
-1. Create `homeworks/hmwk-03/index.html`, `styles.css`, and `script.js`.
-2. Open `assets/site.js` and append an object to the `HOMEWORKS` list. Example:
+- Lesson 01's **F₁₇** arithmetic is deliberately insecure and purely pedagogical.
+- The wallet demo uses **public standard development/test vectors**; never deposit funds into these addresses or provide a private recovery mnemonic.
+- Lesson 02's ECC implementation uses the actual **secp256k1** curve with an artificially restricted long-term private-key search range; its SHA-256-derived XOR scheme is an unauthenticated educational construction, not secure ECIES or a production protocol.
+- Statistical results depend on the reference corpus and evaluation samples; the charts do not constitute a proof of security.
 
-```js
-{
-  id: '03', tag: 'CRYPTOGRAPHY', category: 'New topic',
-  title: 'Homework Three', subtitle: 'The next assignment.',
-  description: 'Explain the experiment here.',
-  tags: ['Interactive', 'JavaScript'],
-  href: 'homeworks/hmwk-03/', icon: '03', variant: 'a'
-}
-```
-
-3. Commit/push changes. The homepage count and card list update automatically.
-
-## Homework 01 — Reference checks
-
-Toy curve: `y² = x³ + 7 (mod 17)` with point `G = (1,5)`, scalar `k = 6`:
-
-```
-G  = (1, 5)
-2G = (2, 10)
-3G = (5, 9)
-4G = (12, 1)
-5G = (12, 16)
-6G = (5, 8)
-9G = O   (point at infinity; order(G) = 9)
-```
-
-There are 17 finite points + infinity, totaling 18 group elements. This is a **tiny insecure teaching curve**, not the real Ethereum secp256k1 curve.
-
-## Homework 02 — Real browser-side reference checks
-
-Public Hardhat example (never put funds here):
-
-```
-mnemonic: test test test test test test test test test test test junk
-path:     m/44'/60'/0'/0/0
-address:  0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
-```
-
-Another public BIP-39 sample:
-
-```
-mnemonic: abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about
-path:     m/44'/60'/0'/0/0
-address:  0x9858EfFD232B4033E47d90003D41EC34EcaEda94
-```
-
-Homework 02 **does perform the actual derivations** for these fixed, public test phrases. It uses browser Web Crypto for BIP-39 PBKDF2-HMAC-SHA512 and BIP-32 HMAC-SHA512. The real secp256k1 point multiplication and Keccak-256 / SHA3-256 are implemented in dependency-free JavaScript for educational inspection. It computes actual EIP-55 casing. It intentionally does *not* accept personal mnemonic phrases or become a real wallet.
-
-### Statistical method / limitations
-
-For `N = 8, 16, 32` consecutive address indices, the page derives each 20-byte address and reports:
-
-- Count of distinct addresses (within the small sample only).
-- Proportion of one bits in address bytes, out of `160N` bits.
-- Counts for the 16 hexadecimal symbols over `40N` output nibbles.
-- Frequencies of one bits by bit position (displayed as averages over 16 groups of 10 bit positions).
-- Mean Hamming distance in the 160 address bits between outputs at adjacent indices.
-- Single-input-bit flip experiment for Keccak-256 digests; side-by-side real SHA3-256 computation.
-
-These results are descriptive and **not proofs** of uniformity, independence, ECDLP difficulty, avalanche properties in general, preimage resistance or collision resistance. EIP-55 is only an error-detecting checksum, not an authenticity mechanism.
-
-## Reproducible automated tests (optional)
-
-With a current Node.js version:
-
-```
-node tests/test_ecc.js
-node tests/test_wallet.js
-```
-
-No `npm install` is necessary. The tests cover the toy-curve group law, order and trace, EIP-55 cases from the specification, Keccak/SHA3 vectors, secp256k1 point multiplication compared with Node's native implementation, BIP-39/BIP-32 Ethereum address fixtures, and basic statistical invariants.
-
-## Primary documentation
-
-- [BIP-39](https://bips.dev/39/)
-- [BIP-32](https://bips.dev/32/)
-- [BIP-44](https://bips.dev/44/)
-- [SLIP-44](https://github.com/satoshilabs/slips/blob/master/slip-0044.md)
-- [Ethereum account model](https://ethereum.org/developers/docs/accounts/)
-- [EIP-55](https://eips.ethereum.org/EIPS/eip-55)
-- [NIST FIPS 202 / SHA-3](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
-
-### Disclaimer
-
-This is an interactive educational demonstration and **not production cryptographic or wallet software**. No dependencies, analytics, wallets, private-key storage or transactions are used.
+No build system, backend, external dependency installation or API key is needed. Modern browsers and an HTTPS origin are recommended. GitHub Pages provides HTTPS.

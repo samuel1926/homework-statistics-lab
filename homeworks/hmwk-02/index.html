@@ -7,6 +7,8 @@
   <meta name="description" content="Samuele Tortora — HMWK 02: an interactive BIP-39, BIP-32, BIP-44, secp256k1, Keccak-256 and EIP-55 Ethereum wallet derivation laboratory.">
   <title>HMWK 02 — From Wallet Seed to Ethereum Address · Samuele Tortora</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../../assets/embed-lab.css">
+  <script src="../../assets/embed-lab.js" defer></script>
   <script src="crypto.js" defer></script>
   <script src="script.js" defer></script>
   <script src="extra.js" defer></script>
@@ -15,8 +17,8 @@
   <a href="#main" class="skip">Skip to content</a>
   <div class="page-wrap">
     <header class="topbar">
-      <a href="../../index.html" class="site-identity"><span class="mark">ST<span>.</span></span><span><strong>SAMUELE TORTORA</strong><small>HMWK / 02 · STUDENT ID 2344522</small></span></a>
-      <nav aria-label="Page navigation"><a href="../../index.html">← All homeworks</a><a href="#pipeline">Live pipeline</a><a href="#standards">Standards</a><a href="#statistics">Statistics</a><a href="#conclusions">Conclusions</a></nav>
+      <a href="../lesson-01/" class="site-identity"><span class="mark">ST<span>.</span></span><span><strong>SAMUELE TORTORA</strong><small>HMWK / 02 · STUDENT ID 2344522</small></span></a>
+      <nav aria-label="Page navigation"><a href="../lesson-01/">← All homeworks</a><a href="#pipeline">Live pipeline</a><a href="#standards">Standards</a><a href="#statistics">Statistics</a><a href="#conclusions">Conclusions</a></nav>
       <a class="code-link" href="crypto.js" download>‹/› Crypto engine</a>
     </header>
     <main id="main">
@@ -73,7 +75,7 @@
 
       <section class="section conclusions" id="conclusions"><div class="section-heading"><div><p class="section-num">06 / DISCUSSION & CONCLUSIONS</p><h2>Why not one algorithm for everything<span>?</span></h2></div></div><div class="conclusion-grid"><article class="card"><span>01 / KEY MANAGEMENT</span><h3>Generation and derivation are different.</h3><p>Fresh wallet entropy is <strong>generated</strong> using a secure random source. BIP-39 <strong>encodes</strong> this randomness and derives a seed; BIP-32 deterministically <strong>derives</strong> many child keys. BIP-44 standardizes where those children reside.</p></article><article class="card"><span>02 / ASYMMETRIC CRYPTOGRAPHY</span><h3>A public key is not a hash.</h3><p>secp256k1 links the private scalar and public point through <strong>Q = kG</strong>. Security depends on the elliptic-curve discrete logarithm problem. It also enables the public/private-key relationship underlying digital signatures.</p></article><article class="card"><span>03 / HASHING</span><h3>Keccak condenses data.</h3><p>Keccak-256 turns a 64-byte public key into a fixed-length digest; the final 20 bytes identify an Ethereum externally owned account. Collision/preimage resistance and diffusion are hash-function concepts, not the same as ECDLP.</p></article><article class="card"><span>04 / CHECKSUMS & ENCODING</span><h3>Capital letters detect mistakes.</h3><p>EIP-55's casing is an <strong>error-detection checksum</strong> applied to a hexadecimal encoding. It is not a digital signature or encryption, and cannot guarantee all errors are caught.</p></article></div><div class="takeaway"><strong>FINAL TAKEAWAY</strong><p>A secure wallet relies on composition: randomness and deterministic key management, asymmetric cryptography, cryptographic hashing, and human-readable error-detecting representation. Each primitive has its own mathematical goal and security assumptions.</p></div><div class="source-downloads"><strong>SOURCE CODE</strong><a href="crypto.js" download>Download crypto.js ↗</a><a href="script.js" download>Download script.js ↗</a></div><div class="references"><span>PRIMARY REFERENCES</span><a href="https://bips.dev/39/" target="_blank" rel="noopener noreferrer">BIP-39 ↗</a><a href="https://bips.dev/32/" target="_blank" rel="noopener noreferrer">BIP-32 ↗</a><a href="https://bips.dev/44/" target="_blank" rel="noopener noreferrer">BIP-44 ↗</a><a href="https://eips.ethereum.org/EIPS/eip-55" target="_blank" rel="noopener noreferrer">EIP-55 ↗</a><a href="https://www.nist.gov/publications/sha-3-standard-permutation-based-hash-and-extendable-output-functions" target="_blank" rel="noopener noreferrer">NIST FIPS 202 ↗</a><a href="https://ethereum.org/developers/docs/accounts/" target="_blank" rel="noopener noreferrer">Ethereum Docs ↗</a></div></section>
     </main>
-    <footer class="footer"><div class="footer-left"><span class="mark small-mark">ST<span>.</span></span><div><strong>SAMUELE TORTORA · HMWK 02</strong><small>Student ID 2344522 · Applied Cryptography</small></div></div><span>Educational demo · Do not use real wallet secrets</span><a href="../../index.html">← All homeworks</a></footer>
+    <footer class="footer"><div class="footer-left"><span class="mark small-mark">ST<span>.</span></span><div><strong>SAMUELE TORTORA · HMWK 02</strong><small>Student ID 2344522 · Applied Cryptography</small></div></div><span>Educational demo · Do not use real wallet secrets</span><a href="../lesson-01/">← All homeworks</a></footer>
   </div>
 </body>
 </html>

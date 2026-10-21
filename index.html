@@ -4,73 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#090b16">
-  <meta name="description" content="Samuele Tortora · Student ID 2344522. An interactive portfolio of cryptography homework: elliptic curves, Ethereum wallets, Caesar ciphers, statistical cryptanalysis and hashing.">
+  <meta name="description" content="Samuele Tortora · 2344522. Two interactive cryptography lessons: elliptic curves and Ethereum wallets; classical ciphers and statistical cryptanalysis.">
   <title>Samuele Tortora · Statistics Lab / Homework Collection</title>
   <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="assets/unified.css">
   <script src="assets/site.js" defer></script>
-  <style>
-/* HMWK3 listing — scoped styles, retaining the original Statistics.Lab theme */
-#homework-grid > .homework-three-card {
-  display: block;
-  position: relative;
-  min-width: 0;
-  align-self: stretch;
-  overflow: hidden;
-  border-radius: 19px;
-  border: 1px solid rgba(134, 157, 204, .23);
-  background:
-    radial-gradient(ellipse at 90% 0, rgba(82, 82, 205, .18), transparent 58%),
-    linear-gradient(155deg, #11182a 0%, #0b1020 78%);
-  box-shadow: 0 13px 35px rgba(0,0,0,.18);
-  color: #eef3ff;
-  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
-}
-#homework-grid > .homework-three-card[hidden] { display: none !important; }
-#homework-grid > .homework-three-card:hover,
-#homework-grid > .homework-three-card:focus-within {
-  transform: translateY(-5px);
-  border-color: rgba(100, 218, 240, .6);
-  box-shadow: 0 22px 50px rgba(0,0,0,.3);
-}
-.homework-three-card .hw3-link {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 380px;
-  box-sizing: border-box;
-  padding: 25px;
-  color: inherit;
-  text-decoration: none;
-}
-.homework-three-card .hw3-link:focus-visible { outline: 3px solid #6cdcec; outline-offset: -4px; }
-.homework-three-card .hw3-topline,
-.homework-three-card .hw3-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.homework-three-card .hw3-index { font: 700 11px/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .15em; color: #94b1cd; }
-.homework-three-card .hw3-status { display: flex; align-items: center; gap: 7px; font: 700 10px/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .09em; color: #84e3be; }
-.homework-three-card .hw3-live-dot { width: 7px; height: 7px; display: inline-block; border-radius: 100%; background: #6fe8b2; box-shadow: 0 0 10px rgba(101, 255, 184, .45); }
-.homework-three-card .hw3-glyph { margin: 26px 0 19px; height: 100px; border-radius: 15px; background: linear-gradient(130deg, rgba(67, 91, 172, .24), rgba(42, 191, 210, .08)); border: 1px solid rgba(149, 188, 226, .13); display: flex; align-items: center; justify-content: center; gap: 28px; }
-.homework-three-card .hw3-glyph > span:first-child { font: 800 53px/1 Georgia, Cambria, serif; color: #8fd9ff; text-shadow: 0 0 24px rgba(56, 183, 245, .23); }
-.homework-three-card .hw3-key { font: 700 13px/1.3 ui-monospace, monospace; color: #b3a6ff; padding: 9px 11px; border: 1px solid rgba(173, 151, 247, .33); border-radius: 7px; }
-.homework-three-card .hw3-type { font: 700 10px/1.6 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .09em; color: #71dbea; }
-.homework-three-card .hw3-copy h3 { margin: 10px 0; font-size: clamp(21px, 2vw, 26px); line-height: 1.15; letter-spacing: -.03em; color: white; }
-.homework-three-card .hw3-period { color: #67dbed; }
-.homework-three-card .hw3-copy p { margin: 0; color: #aabbd0; font-size: 13px; line-height: 1.65; }
-.homework-three-card .hw3-tags { margin: 22px 0; display: flex; flex-wrap: wrap; gap: 7px; }
-.homework-three-card .hw3-tags span { font: 600 10px/1.4 ui-monospace, monospace; color: #a6c4da; border: 1px solid rgba(145, 164, 208, .22); background: rgba(132, 150, 212, .075); border-radius: 6px; padding: 5px 8px; }
-.homework-three-card .hw3-bottom { margin-top: auto; padding-top: 17px; border-top: 1px solid rgba(143, 164, 203, .18); font: 700 10px/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .055em; color: #90aaca; }
-.homework-three-card .hw3-bottom small { font-weight: 500; opacity: .8; }
-.homework-three-card .hw3-bottom strong { flex: 0 0 auto; color: #72e1ec; font-size: 11px; white-space: nowrap; }
-.homework-three-card .hw3-bottom strong span { margin-left: 3px; }
-@media(max-width: 700px) { .homework-three-card .hw3-link { min-height: 330px; } .homework-three-card .hw3-glyph { height: 90px; } .homework-three-card .hw3-bottom small { display: none; } }
-
-  </style>
 </head>
 <body>
   <a class="skip-link" href="#homeworks">Skip to assignments</a>
   <div class="page">
     <header class="header" id="top">
       <a class="logo" href="./" aria-label="Cryptography Lab homepage"><span class="logo-emblem"><span>⌁</span></span><span class="logo-copy"><strong>STATISTICS<span class="logo-cyan">.</span>LAB</strong><small>THE HOMEWORK ARCHIVE</small></span></a>
-      <nav class="nav" aria-label="Main navigation"><a class="selected" href="#top">Overview</a><a href="#homeworks">Homework library</a><a href="#method">Methodology</a></nav>
+      <nav class="nav" aria-label="Main navigation"><a class="selected" href="#top">Overview</a><a href="#homeworks">Lessons library</a><a href="#method">Methodology</a></nav>
       <a class="nav-id" href="#author"><span class="status-pulse"></span>SAMUELE TORTORA <span class="muted-id">/ 2344522</span></a>
     </header>
 
@@ -80,8 +25,8 @@
         <div class="hero-left">
           <span class="eyebrow"><span class="mini-cube">✳</span> APPLIED CRYPTOGRAPHY <span class="eyebrow-split">/</span> AN OPEN LEARNING LAB</span>
           <h1 id="hero-heading">Cryptography,<br><span class="gradient-type">made tangible.</span></h1>
-          <p class="hero-intro">Mathematics you can interact with. A growing collection of homework experiments exploring elliptic curves, Ethereum wallets, Caesar ciphers and statistical cryptanalysis.</p>
-          <div class="hero-actions"><a class="btn btn-primary" href="#homeworks">Explore the homework <span>↗</span></a><a class="btn btn-ghost" href="#live-demo">Try the live experiment <span>↓</span></a></div>
+          <p class="hero-intro">One coherent learning journey in two lessons. Explore elliptic curves and Ethereum wallets, then investigate Caesar ciphers, statistical attacks and secp256k1 key recovery.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#homeworks">Explore the lessons <span>↗</span></a><a class="btn btn-ghost" href="#live-demo">Try the live experiment <span>↓</span></a></div>
           <div class="hero-info"><span class="user-dot">ST</span><span><b>Samuele Tortora</b><small>Student ID 2344522 · Coursework / 2026</small></span><span class="hero-divider"></span><span class="hero-course">INTERACTIVE<br><strong>BY DESIGN</strong></span></div>
         </div>
         <div class="hero-right" id="live-demo" aria-labelledby="demo-title">
@@ -97,14 +42,14 @@
         </div>
       </section>
 
-      <section class="overview-bar" aria-label="Coursework overview"><div><span class="metric-icon">◈</span><strong id="published-count">03</strong><small>INTERACTIVE HOMEWORKS</small></div><div><span class="metric-icon">⌘</span><strong>100%</strong><small>CLIENT-SIDE JAVASCRIPT</small></div><div><span class="metric-icon">◎</span><strong>Open</strong><small>REPRODUCIBLE EXPERIMENTS</small></div><div><span class="metric-icon">↗</span><strong>GitHub Pages</strong><small>ONE SHAREABLE WEBSITE</small></div></section>
+      <section class="overview-bar" aria-label="Coursework overview"><div><span class="metric-icon">◈</span><strong id="published-count">02</strong><small>PUBLISHED LESSONS</small></div><div><span class="metric-icon">⌘</span><strong>100%</strong><small>CLIENT-SIDE JAVASCRIPT</small></div><div><span class="metric-icon">◎</span><strong>Open</strong><small>REPRODUCIBLE EXPERIMENTS</small></div><div><span class="metric-icon">↗</span><strong>GitHub Pages</strong><small>ONE SHAREABLE WEBSITE</small></div></section>
 
       <section class="library" id="homeworks">
-        <div class="section-head"><div><p class="overline">01 <span>/</span> EXPERIMENT COLLECTION</p><h2>Choose your <em>experiment.</em></h2><p>Each assignment is a complete interactive lab, with mathematical reasoning, reproducible results and implementation you can inspect.</p></div><span class="project-index">[ <span id="index-count">03</span> PUBLISHED / MORE TO COME ]</span></div>
-        <div class="library-toolbar"><div class="search-wrap"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><label for="homework-search" class="sr-only">Search homeworks</label><input id="homework-search" type="search" placeholder="Search by topic, technique or number…" autocomplete="off"><span class="keycap">/</span></div><div class="filter-tabs" role="group" aria-label="Filter assignments"><button class="active" data-filter="all" aria-pressed="true">All <span id="filter-count">03</span></button><button data-filter="elliptic" aria-pressed="false">Elliptic curves</button><button data-filter="wallet" aria-pressed="false">Wallets & hashing</button><button data-filter="cryptanalysis" aria-pressed="false">Cryptanalysis</button></div></div>
+        <div class="section-head"><div><p class="overline">01 <span>/</span> EXPERIMENT COLLECTION</p><h2>Choose your <em>lesson.</em></h2><p>Each lesson groups its exercises into a single, navigable experience, with mathematical demonstrations, working code and reproducible statistical experiments.</p></div><span class="project-index">[ <span id="index-count">02</span> PUBLISHED / MORE TO COME ]</span></div>
+        <div class="library-toolbar"><div class="search-wrap"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><label for="homework-search" class="sr-only">Search homeworks</label><input id="homework-search" type="search" placeholder="Search by lesson, technique or topic…" autocomplete="off"><span class="keycap">/</span></div><div class="filter-tabs" role="group" aria-label="Filter lessons"><button class="active" data-filter="all" aria-pressed="true">All <span id="filter-count">02</span></button><button data-filter="lesson1" aria-pressed="false">Lesson 01</button><button data-filter="lesson2" aria-pressed="false">Lesson 02</button></div></div>
         <div id="homework-grid" class="homework-grid" aria-live="polite"></div>
         <div id="no-results" class="no-results" hidden>No homework matches this search. Try a different keyword.</div>
-        <div class="future"><div class="future-icon">+</div><div><strong>Built to grow with every assignment.</strong><span>HMWK 04, 05, 06… will join this collection, always at the same address.</span></div><span class="future-code">NEXT / TBA</span></div>
+        <div class="future"><div class="future-icon">+</div><div><strong>One website, organized by lesson.</strong><span>Future lessons will join this collection at the same address. All earlier experiments remain preserved inside their lesson.</span></div><span class="future-code">NEXT / TBA</span></div>
       </section>
 
       <section class="method" id="method"><div class="method-heading"><p class="overline">02 <span>/</span> HOW THESE LABS WORK</p><h2>Not just results.<br><em>Reasoning you can see.</em></h2><p>Every page is designed as a hands-on companion to the course: experiment first, understand the algebra, then critically interpret the statistics.</p></div><div class="method-grid"><article><span class="method-number">01</span><span class="method-icon">⌁</span><h3>Experiment</h3><p>Adjust inputs, manipulate mathematical objects and see the result update instantly.</p></article><article><span class="method-number">02</span><span class="method-icon">⌘</span><h3>Inspect</h3><p>Trace algorithms one step at a time, with clear formulas and verifiable reference vectors.</p></article><article><span class="method-number">03</span><span class="method-icon">▥</span><h3>Analyze</h3><p>Study distributions and bit patterns without confusing empirical observations with security proofs.</p></article></div></section>
@@ -112,146 +57,5 @@
     </main>
     <footer class="footer"><div><span class="footer-mark">⌁</span><span>STATISTICS.LAB <small>© 2026 · Samuele Tortora / 2344522</small></span></div><p>Educational experiments. Never use toy cryptography for real keys.</p><a href="#top">BACK TO TOP ↑</a></footer>
   </div>
-  <script>
-/*
- * Statistics.Lab — HMWK 03 integration
- * An additive enhancement to the existing assets/site.js.
- * It DOES NOT overwrite any of the previous homework implementations.
- */
-(() => {
-  'use strict';
-
-  const init = () => {
-    const grid = document.getElementById('homework-grid');
-    const search = document.getElementById('homework-search');
-    const empty = document.getElementById('no-results');
-    const filterBar = document.querySelector('.filter-tabs');
-    if (!grid || !search || !filterBar) return;
-
-    const thirdFilter = filterBar.querySelector('[data-filter="cryptanalysis"]');
-    const categories = Array.from(filterBar.querySelectorAll('[data-filter]'));
-    const allCount = document.getElementById('filter-count');
-    const published = document.getElementById('published-count');
-    const indexed = document.getElementById('index-count');
-    const label = 'HMWK 03 — Cryptography & Statistical Cryptanalysis';
-    const searchTerms = '03 3 homework homework2 homework3 cryptanalysis cryptography statistical statistics caesar cipher brute force secp256k1 elliptic curve ecc key recovery chi square monte carlo frequency attack encryption decryption';
-    let selectedFilter = 'all';
-    let syncPending = false;
-    const temporarilyHidden = new Map();
-    let forcedEmptyState = false;
-
-    const card = document.createElement('article');
-    card.id = 'homework-three-card';
-    card.className = 'homework-three-card';
-    card.dataset.category = 'cryptanalysis';
-    card.dataset.filter = 'cryptanalysis';
-    card.innerHTML = `
-      <a class="hw3-link" href="homeworks/HMWK3/" aria-label="Open Homework 03: Statistical Cryptanalysis">
-        <div class="hw3-topline"><span class="hw3-index">03 / EXPERIMENT</span><span class="hw3-status"><span class="hw3-live-dot"></span> PUBLISHED</span></div>
-        <div class="hw3-glyph" aria-hidden="true"><span>χ²</span><span class="hw3-key">k → ?</span></div>
-        <div class="hw3-copy"><span class="hw3-type">CLASSICAL & ELLIPTIC-CURVE CRYPTOGRAPHY</span><h3>Breaking the Cipher<span class="hw3-period">.</span></h3><p>Caesar and secp256k1 encryption, statistical key recovery, brute-force attacks, Monte Carlo experiments and mathematical proofs.</p></div>
-        <div class="hw3-tags"><span>Caesar</span><span>ECC</span><span>Cryptanalysis</span><span>Statistics</span></div>
-        <div class="hw3-bottom"><span>INTERACTIVE LAB <small>· THEORY + EXPERIMENTS</small></span><strong>EXPLORE <span aria-hidden="true">↗</span></strong></div>
-      </a>`;
-
-    // Preserve the earlier homework cards' original display style when toggling HMWK3-only view.
-    function restorePreviousCards() {
-      for (const [element, priorDisplay] of temporarilyHidden) {
-        if (element.isConnected) element.style.display = priorDisplay;
-      }
-      temporarilyHidden.clear();
-    }
-
-    function setOverviewCounts() {
-      // site.js knows about only the two initial entries. The third entry is an additive module.
-      for (const element of [published, indexed, allCount]) {
-        if (element && element.textContent.trim() !== '03') element.textContent = '03';
-      }
-    }
-
-    function visibleByQuery() {
-      const query = search.value.toLocaleLowerCase().trim();
-      if (!query) return true;
-      return (label + ' ' + searchTerms).toLowerCase().includes(query);
-    }
-
-    function sync() {
-      syncPending = false;
-      setOverviewCounts();
-      if (!grid.contains(card)) grid.appendChild(card);
-      restorePreviousCards();
-
-      const isOnlyThird = selectedFilter === 'cryptanalysis';
-      const showThird = (selectedFilter === 'all' || isOnlyThird) && visibleByQuery();
-      card.hidden = !showThird;
-      card.style.display = showThird ? '' : 'none';
-
-      if (isOnlyThird) {
-        for (const other of Array.from(grid.children)) {
-          if (other === card) continue;
-          temporarilyHidden.set(other, other.style.display);
-          other.style.display = 'none';
-        }
-        if (empty) {
-          empty.hidden = showThird;
-          forcedEmptyState = true;
-        }
-      } else if (empty) {
-        if (showThird) {
-          empty.hidden = true;
-          forcedEmptyState = true;
-        } else if (forcedEmptyState) {
-          // Let site.js determine whether one of the old cards matches its search/filter.
-          // Its input/filter callbacks will run before the next scheduled sync.
-          if (Array.from(grid.children).every(el => el === card || el.hidden || el.style.display === 'none')) {
-            empty.hidden = false;
-          }
-          forcedEmptyState = false;
-        }
-      }
-    }
-
-    function scheduleSync() {
-      if (syncPending) return;
-      syncPending = true;
-      // Defer until the existing site.js has handled input and filter events.
-      queueMicrotask(sync);
-    }
-
-    // The previous site.js may recreate #homework-grid when filtering or searching.
-    // Reattach only our card when that happens, without modifying its existing results.
-    new MutationObserver(scheduleSync).observe(grid, {childList: true});
-    for (const el of [published, indexed, allCount]) {
-      if (el) new MutationObserver(() => { if (el.textContent.trim() !== '03') setOverviewCounts(); })
-        .observe(el, {childList: true, characterData: true, subtree: true});
-    }
-
-    filterBar.addEventListener('click', (event) => {
-      const button = event.target.closest('button[data-filter]');
-      if (!button) return;
-      selectedFilter = button.dataset.filter;
-      if (selectedFilter === 'cryptanalysis') {
-        // The original site.js does not know this new filter; handle it ourselves.
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        for (const item of categories) {
-          const active = item === button;
-          item.classList.toggle('active', active);
-          item.setAttribute('aria-pressed', String(active));
-        }
-      }
-      scheduleSync();
-    }, true);
-
-    search.addEventListener('input', scheduleSync);
-    search.addEventListener('search', scheduleSync);
-    scheduleSync();
-  };
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
-})();
-
-  </script>
 </body>
 </html>

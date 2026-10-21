@@ -1,0 +1,8 @@
+/* Statistics.Lab shared finishing layer; no changes to the existing live ECC preview. */
+:root{--brand-primary:#9889ff;--brand-accent:#50ebd2}
+.assignment{transition:transform .22s,box-shadow .22s,border-color .22s}
+.assignment:hover{transform:translateY(-4px);box-shadow:0 18px 42px #02050f70;border-color:#6966a3}
+.assignment-art.wallet .art-glyph{color:#6cebd5}
+.assignment-art.curve .art-glyph{color:#b4a8ff}
+.nav a,.btn,.assignment-bottom a{transition:background .2s,color .2s,transform .2s}
+@media(max-width:680px){.library-toolbar{gap:13px}.filter-tabs{flex-wrap:wrap}.filter-tabs button{white-space:nowrap}.hero{padding-top:50px}}

@@ -1,7 +1,7 @@
-/* The catalog is the only place to edit when you add a new homework. */
+/* Central registry: one card per teaching lesson, not per exercise. */
 const HOMEWORKS = [
- {id:'01',topic:'elliptic',eyebrow:'PUBLIC-KEY CRYPTOGRAPHY',title:'Elliptic-Curve Scalar Multiplication',summary:'Private key → Public key',description:'Visualize kG over F₁₇, animate point addition, follow binary double-and-add and examine the empirical distribution of public points.',tags:['ECC','Double-and-add','Statistical exploration'],url:'homeworks/hmwk-01/',short:'Q = kG',mode:'curve',chapters:'04',accent:'violet'},
- {id:'02',topic:'wallet',eyebrow:'ETHEREUM / KEY MANAGEMENT',title:'From Wallet Seed to Ethereum Address',summary:'Mnemonic → Checksummed address',description:'Explore the real BIP-39/32/44 pipeline, secp256k1, Keccak-256 and EIP-55 using reproducible public test vectors.',tags:['BIP-39 · BIP-32 · BIP-44','Keccak-256','EIP-55'],url:'homeworks/hmwk-02/',short:'0x',mode:'wallet',chapters:'06',accent:'mint'}
+ {id:'01',topic:'lesson1',eyebrow:'LESSON 01 / FOUNDATIONS',title:'Elliptic Curves & Ethereum Wallets',summary:'Two exercises. One complete lesson.',description:'Part 1 explores point addition, double-and-add and statistics over F₁₇. Part 2 builds a wallet address from public BIP-39/BIP-32/44 test vectors and inspects Keccak and EIP-55.',tags:['ECC','Scalar multiplication','Ethereum wallet','BIP-39','Keccak-256'],url:'homeworks/lesson-01/',short:'kG',mode:'curve',chapters:'02',accent:'violet'},
+ {id:'02',topic:'lesson2',eyebrow:'LESSON 02 / CRYPTANALYSIS',title:'Encryption & Statistical Cryptanalysis',summary:'Caesar, secp256k1 and the limits of secrecy.',description:'Encrypt and decrypt the same message, recover Caesar keys from letter statistics, run reproducible length experiments and attack deliberately small ECC private keys.',tags:['Caesar cipher','secp256k1','Chi-square','Monte Carlo','Key recovery'],url:'homeworks/lesson-02/',short:'χ²',mode:'wallet',chapters:'07',accent:'mint'}
 ];
 (() => {
 'use strict';
@@ -18,9 +18,9 @@ function renderCards(){
  const fragment=document.createDocumentFragment();
  for(const h of records){
   const article=document.createElement('article');article.className=`assignment assignment-${h.accent}`;
-  article.innerHTML=`<div class="assignment-top"><span><span class="assignment-indicator"></span> HMWK / ${h.id}</span><span class="assignment-status">● COMPLETED</span></div>
-   <div class="assignment-art ${h.mode}" aria-hidden="true"><div class="orbital orbital-a"></div><div class="orbital orbital-b"></div><span class="art-glyph">${h.short}</span><span class="art-caption">${h.eyebrow}</span><span class="art-ref">${h.mode==='curve'?'k ↦ (x, y)':'12 WORDS ↦ 0x…'}</span></div>
-   <div class="assignment-body"><p class="assignment-eyebrow">${h.eyebrow}</p><h3>${h.title}</h3><p class="assignment-summary">${h.summary}</p><p class="assignment-description">${h.description}</p><div class="tags">${h.tags.map(t=>`<span>${t}</span>`).join('')}</div></div><div class="assignment-bottom"><span><strong>${h.chapters}</strong> LEARNING SECTIONS</span><a href="${h.url}" aria-label="Open Homework ${h.id}: ${h.title}">EXPLORE LAB <b>↗</b></a></div>`;
+  article.innerHTML=`<div class="assignment-top"><span><span class="assignment-indicator"></span> LESSON / ${h.id}</span><span class="assignment-status">● COMPLETED</span></div>
+   <div class="assignment-art ${h.mode}" aria-hidden="true"><div class="orbital orbital-a"></div><div class="orbital orbital-b"></div><span class="art-glyph">${h.short}</span><span class="art-caption">${h.eyebrow}</span><span class="art-ref">${h.mode==='curve'?'ECC + WALLET':'CAESAR + ECC'}</span></div>
+   <div class="assignment-body"><p class="assignment-eyebrow">${h.eyebrow}</p><h3>${h.title}</h3><p class="assignment-summary">${h.summary}</p><p class="assignment-description">${h.description}</p><div class="tags">${h.tags.map(t=>`<span>${t}</span>`).join('')}</div></div><div class="assignment-bottom"><span><strong>${h.chapters}</strong> CORE LABS / MODULES</span><a href="${h.url}" aria-label="Open Homework ${h.id}: ${h.title}">OPEN LESSON <b>↗</b></a></div>`;
   fragment.append(article);
  }
  grid.replaceChildren(fragment);$('no-results').hidden=records.length>0;
