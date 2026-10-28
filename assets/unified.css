@@ -6,3 +6,9 @@
 .assignment-art.curve .art-glyph{color:#b4a8ff}
 .nav a,.btn,.assignment-bottom a{transition:background .2s,color .2s,transform .2s}
 @media(max-width:680px){.library-toolbar{gap:13px}.filter-tabs{flex-wrap:wrap}.filter-tabs button{white-space:nowrap}.hero{padding-top:50px}}
+
+/* A third lesson follows the same design system with its own random-walk illustration. */
+.assignment-art.stochastic{background:radial-gradient(ellipse at 50% 55%,#394078,#19283b 43%,#101629 79%)}
+.assignment-art.stochastic .art-glyph{color:#83f1df;text-shadow:0 0 40px #5eeccc80}
+.assignment-art.stochastic .orbital{border-color:#8e9dff88}
+.assignment-art.stochastic .orbital-b{border-color:#63e8d488}
