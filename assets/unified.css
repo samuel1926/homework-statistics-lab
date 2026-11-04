@@ -1,4 +1,4 @@
-/* Statistics.Lab shared finishing layer; no changes to the existing live ECC preview. */
+/* Shared finishing layer from the Statistics.Lab design system. */
 :root{--brand-primary:#9889ff;--brand-accent:#50ebd2}
 .assignment{transition:transform .22s,box-shadow .22s,border-color .22s}
 .assignment:hover{transform:translateY(-4px);box-shadow:0 18px 42px #02050f70;border-color:#6966a3}
@@ -6,9 +6,13 @@
 .assignment-art.curve .art-glyph{color:#b4a8ff}
 .nav a,.btn,.assignment-bottom a{transition:background .2s,color .2s,transform .2s}
 @media(max-width:680px){.library-toolbar{gap:13px}.filter-tabs{flex-wrap:wrap}.filter-tabs button{white-space:nowrap}.hero{padding-top:50px}}
-
-/* A third lesson follows the same design system with its own random-walk illustration. */
 .assignment-art.stochastic{background:radial-gradient(ellipse at 50% 55%,#394078,#19283b 43%,#101629 79%)}
 .assignment-art.stochastic .art-glyph{color:#83f1df;text-shadow:0 0 40px #5eeccc80}
 .assignment-art.stochastic .orbital{border-color:#8e9dff88}
 .assignment-art.stochastic .orbital-b{border-color:#63e8d488}
+/* New Lesson 04 card, same orbital artwork vocabulary. */
+.assignment-art.estimation{background:radial-gradient(ellipse at 49% 48%,#3d3a7b,#20223f 43%,#10182a 80%)}
+.assignment-art.estimation .art-glyph{color:#d0b6ff;text-shadow:0 0 41px #b99aff89}
+.assignment-art.estimation .orbital{border-color:#b7a4ff9a}
+.assignment-art.estimation .orbital-b{border-color:#5fecdc77}
+@media(max-width:680px){.filter-tabs{max-width:100%}}
