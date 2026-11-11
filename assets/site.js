@@ -27,6 +27,13 @@ const HOMEWORKS = [
     description: 'Derive Knuth and Welford recurrence formulas, trace online updates, then simulate sampling means and unbiased variances from penetration scores between 0 and 10.',
     tags: ['Welford','Knuth','Sample variance','Unbiasedness','Inference','Monte Carlo'],
     url: 'homeworks/lesson-04/', short: 'μ̂ σ²', mode: 'estimation', chapters: '02', accent: 'violet', artRef: 'MEAN + VARIANCE'
+  },
+  {
+    id: '05', topic: 'lesson5', eyebrow: 'LESSON 05 / NUMERICAL ANALYSIS',
+    title: 'Riemann & Lebesgue Integration · Normal CDF', summary: 'Two exercises. Nine functions. Four Gaussian algorithms.',
+    description: 'Compare domain midpoint sums with exact preimage-measure level sets, investigate Dirichlet and Thomae, and benchmark numerical quadrature, power series and erf approximations for the Gaussian CDF.',
+    tags: ['Riemann', 'Lebesgue', 'Dirichlet', 'Thomae', 'Normal CDF', 'erf', 'Liouville'],
+    url: 'homeworks/lesson-05/', short: '∫ Φ', mode: 'estimation', chapters: '02', accent: 'mint', artRef: 'INTEGRATION + CDF'
   }
 ];
 
