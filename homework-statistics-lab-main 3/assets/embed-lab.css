@@ -1,0 +1,12 @@
+/* Shared styling for the two retained legacy labs when embedded in Lesson 01. */
+html.embedded,html.embedded body{background:transparent!important;overflow-x:hidden!important;min-width:0!important}
+html.embedded body::before{display:none!important}
+html.embedded .site-header,html.embedded .topbar,html.embedded .site-footer,html.embedded footer.footer,html.embedded .skip-link,html.embedded .skip{display:none!important}
+html.embedded .page-shell,html.embedded .page-wrap{padding:0 14px!important;width:100%!important;max-width:100%!important}
+html.embedded .hero{min-height:0!important;padding-top:38px!important;padding-bottom:48px!important}
+html.embedded .content-section,html.embedded section.section{scroll-margin-top:100px}
+html.embedded section:last-of-type{margin-bottom:20px}
+html.embedded .source-link{display:none!important}
+html.embedded .hero-glow{opacity:.22}
+html.embedded *{scrollbar-color:#49516a #111522}
+@media(max-width:650px){html.embedded .page-shell,html.embedded .page-wrap{padding:0 8px!important}html.embedded .hero{padding-top:26px!important}}

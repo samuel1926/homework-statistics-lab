@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090b16"><meta name="description" content="Statistics.Lab Lesson 01: two integrated exercises on elliptic curves and Ethereum wallet cryptography, with interactive labs and mathematical analysis.">
+<title>Lesson 01 · Elliptic Curves & Ethereum Wallets | Statistics.Lab</title>
+<link rel="stylesheet" href="../../assets/site.css"><link rel="stylesheet" href="../../assets/unified.css"><link rel="stylesheet" href="../../assets/lesson.css">
+<script src="../../assets/lesson.js" defer></script></head><body>
+<a class="skip-link" href="#part-ecc">Skip to lesson contents</a>
+<div class="page lesson-page">
+<header class="header lesson-header" id="top">
+<a class="logo" href="../../index.html" aria-label="Statistics Lab home"><span class="logo-emblem"><span>⌁</span></span><span class="logo-copy"><strong>STATISTICS<span class="logo-cyan">.</span>LAB</strong><small>THE HOMEWORK ARCHIVE</small></span></a>
+<nav class="nav lesson-nav" aria-label="Lesson navigation"><a href="../../index.html">Overview</a><a class="selected" href="#part-ecc">Part 01 · ECC</a><a href="#part-wallet">Part 02 · Wallet</a><a href="../lesson-02/">Next lesson ↗</a></nav>
+<a class="nav-id" href="#lesson-end"><span class="status-pulse"></span>SAMUELE TORTORA <span class="muted-id">/ 2344522</span></a></header>
+<main>
+<section class="lesson-hero" aria-labelledby="lesson-heading">
+<div class="lesson-kicker">HOMEWORK 01 <span> / </span> FIRST LECTURE <span> / </span> TWO INTEGRATED PARTS</div>
+<div class="lesson-hero-grid"><div><h1 id="lesson-heading">From a secret scalar<br><span>to an Ethereum address.</span></h1><p>The first lecture contains two linked experiments. First, understand elliptic-curve scalar multiplication on a small finite field; then use the same mathematical idea within the real Ethereum wallet derivation pipeline.</p><div class="lesson-actions"><a class="lesson-button solid" href="#part-ecc">Start Part 01 ↗</a><a class="lesson-button ghost" href="#part-wallet">Jump to Part 02 ↓</a></div></div>
+<div class="lesson-equation" aria-label="Key derivation diagram"><small>A CONTINUOUS LEARNING PATH</small><div><b>k</b><span>× G</span><b>Q</b></div><i>ELLIPTIC CURVE MATHEMATICS</i><div class="lesson-connector">↓</div><div class="lesson-path">Mnemonic → Seed → Key → Address</div><i>ETHEREUM WALLET DERIVATION</i></div></div>
+<div class="lesson-meta"><span>02 COMPLETE PARTS</span><span>PURE JAVASCRIPT</span><span>INTERACTIVE PROOFS & STATISTICS</span><span>PUBLIC TEST VECTORS</span></div>
+</section>
+<div class="lesson-sticky" aria-label="Jump between lesson parts"><a href="#part-ecc"><b>01</b> Elliptic curves</a><span class="bridge-line">→</span><a href="#part-wallet"><b>02</b> Ethereum wallet</a><a class="back-link" href="../../index.html">↖ All lessons</a></div>
+<section class="lesson-part" id="part-ecc"><div class="lesson-part-title"><div class="part-number">01</div><div><div class="lesson-kicker">PART ONE / THE MATHEMATICAL FOUNDATION</div><h2>Elliptic-curve scalar multiplication<span>.</span></h2><p>Choose a point and a secret scalar. Follow the group law, double-and-add, finite-field graphs and the statistical behavior of the outputs.</p></div></div>
+<div class="lesson-outcomes"><span>Finite field 𝔽₁₇</span><span>Q = kG</span><span>Point arithmetic</span><span>Statistical exploration</span></div>
+<div class="embedded-module"><div class="module-top"><span><i></i> LIVE LAB / PART 01</span><a href="../hmwk-01/?standalone=1" target="_blank" rel="noopener">Open standalone ↗</a></div><iframe title="Part 1 interactive elliptic-curve laboratory" class="lesson-frame" id="ecc-frame" src="../hmwk-01/?embed=1" loading="eager" scrolling="no" referrerpolicy="same-origin" allow="clipboard-write"></iframe></div>
+<div class="lesson-transition"><div class="transition-symbol">↳</div><div><span>FROM PART 01 TO PART 02</span><h3>What changes when the curve is used for an Ethereum wallet?</h3><p>The group law still computes a public point from a secret scalar. A real wallet adds secure entropy, deterministic key derivation, public-key hashing and checksummed address formatting. The toy curve above demonstrates arithmetic; the wallet experiment below implements real secp256k1 operations on public test vectors.</p></div><a href="#part-wallet">Continue ↓</a></div>
+</section>
+<section class="lesson-part" id="part-wallet"><div class="lesson-part-title"><div class="part-number mint">02</div><div><div class="lesson-kicker">PART TWO / APPLICATION AND KEY MANAGEMENT</div><h2>From mnemonic to Ethereum address<span>.</span></h2><p>Inspect BIP-39, PBKDF2, BIP-32/44, secp256k1, Keccak-256 and EIP-55. Run deterministic public examples and examine output statistics.</p></div></div>
+<div class="lesson-outcomes"><span>BIP-39/32/44</span><span>secp256k1</span><span>Keccak-256</span><span>EIP-55</span></div>
+<div class="embedded-module"><div class="module-top"><span><i></i> LIVE LAB / PART 02</span><a href="../hmwk-02/?standalone=1" target="_blank" rel="noopener">Open standalone ↗</a></div><iframe title="Part 2 interactive Ethereum wallet laboratory" class="lesson-frame" id="wallet-frame" src="../hmwk-02/?embed=1" loading="lazy" scrolling="no" referrerpolicy="same-origin" allow="clipboard-write"></iframe></div>
+</section>
+<section class="lesson-finish" id="lesson-end"><div><span>LESSON 01 / FINAL PERSPECTIVE</span><h2>One mathematical foundation. Two complementary experiments.</h2><p>The miniature curve explains the algebra of scalar multiplication. The wallet lab places elliptic-curve keys within a complete derivation, hashing and address-encoding workflow. Neither coordinate charts nor bit-frequency balance alone establish cryptographic security.</p></div><a class="lesson-button solid" href="../lesson-02/">Continue to Lesson 02 ↗</a></section>
+</main><footer class="footer lesson-footer"><div><span class="footer-mark">⌁</span><span>STATISTICS.LAB <small>© 2026 · Samuele Tortora / 2344522</small></span></div><p>Educational experiments. Never use toy keys or public mnemonic test vectors for real funds.</p><a href="#top">BACK TO TOP ↑</a></footer>
+</div></body></html>
