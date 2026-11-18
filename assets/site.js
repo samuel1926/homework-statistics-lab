@@ -34,6 +34,13 @@ const HOMEWORKS = [
     description: 'Compare domain midpoint sums with exact preimage-measure level sets, investigate Dirichlet and Thomae, and benchmark numerical quadrature, power series and erf approximations for the Gaussian CDF.',
     tags: ['Riemann', 'Lebesgue', 'Dirichlet', 'Thomae', 'Normal CDF', 'erf', 'Liouville'],
     url: 'homeworks/lesson-05/', short: '∫ Φ', mode: 'estimation', chapters: '02', accent: 'mint', artRef: 'INTEGRATION + CDF'
+  },
+  {
+    id: '06', topic: 'lesson6', eyebrow: 'LESSON 06 / STATISTICAL INDEPENDENCE',
+    title: 'Statistical Independence & Chi-Square Analysis', summary: 'Contingency tables, conditional frequencies & statistical evidence.',
+    description: 'Analyze any categorical bivariate dataset (X, F). Compute marginal and conditional frequencies, expected counts, Pearson’s chi-square test, p-values and Cramér’s V; distinguish association from causation.',
+    tags: ['Independence', 'Contingency table', 'Conditional probability', 'Chi-square', 'p-value', 'Cramér’s V'],
+    url: 'homeworks/lesson-06/', short: 'X ⟂ F', mode: 'estimation', chapters: '01', accent: 'violet', artRef: 'INDEPENDENCE + χ²'
   }
 ];
 
